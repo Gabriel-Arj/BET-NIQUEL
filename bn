@@ -1,0 +1,25 @@
+import streamlit as st
+import random
+
+st.title("BET NIQUEL ​🎰​")
+st.markdown("Caça-Niquel Online - Não envolve dinheiro de verdade 💰")
+st.markdown("Proibido para menores de 18 anos ✋​🔞​")
+
+icons = ["🍒​", "🍇", "​🍋​", "🥭​"]
+
+if "contador" not in st.session_state:
+    st.session_state.contador = 0
+
+if st.button("ROLL"):
+
+    icon_1 = random.choice(icons)
+    icon_2 = random.choice(icons)
+    icon_3 = random.choice(icons)
+    st.write(icon_1,icon_2,icon_3)
+    st.session_state.contador += 1
+
+    
+    if icon_1 == icon_2 == icon_3:
+        st.write("Voce Ganhou 🎉​")
+        st.balloons()
+        st.write(f"Você jogou {st.session_state.contador} vezes")
