@@ -8,22 +8,30 @@ st.markdown("Proibido para menores de 18 anos ✋​🔞​")
 
 icons = ["🍒​", "🍇", "​🍋​", "🥭​"]
 
+col1, col2, col3 = st.columns(3)
+with col3:
+    st.markdown(f"Creditos:")
+
 if "contador" not in st.session_state:
     st.session_state.contador = 0
+
+if "creditos" not in st.session_state:
+    st.session_state.contador = 100
 
 if st.button("ROLL"):
 
     icon_1 = random.choice(icons)
     icon_2 = random.choice(icons)
     icon_3 = random.choice(icons)
-    st.title(f"{icon_1}|{icon_2}|{icon_3}")
+    st.markdown(f"# {icon_1}|{icon_2}|{icon_3}")
     st.session_state.contador += 1
+    st.session_state.creditos -=10
 
     
     if icon_1 == icon_2 == icon_3:
-        st.write("Voce Ganhou 🎉​")
+        st.success("Voce Ganhou 🎉​")
         st.balloons()
     else:
-        st.write("Tente Novamente")
-        
+        st.error("Tente Novamente")
+
 st.write(f"Você jogou {st.session_state.contador} vezes")
