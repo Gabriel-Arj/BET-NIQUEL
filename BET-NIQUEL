@@ -11,31 +11,36 @@ icons = ["🍒​", "🍇", "​🍋​", "🥭​"]
 if "contador" not in st.session_state:
     st.session_state.contador = 0
 
-if "creditos" not in st.session_state:
-    st.session_state.creditos = 100
+if "coins" not in st.session_state:
+    st.session_state.coins = 0
+
+if "fichas" not in st.session_state:
+    st.session_state.fichas = 100
 
 col1, col2, col3 = st.columns(3)
 with col3:
-    st.markdown(f"### Creditos: {st.session_state.creditos}")    
+    st.markdown(f"### 🎟️​ Fichas: {st.session_state.fichas}")    
+    st.markdown(f"### 🪙 Coins: {st.session_state.coins}")    
 
-if st.button("ROLL") and st.session_state.creditos >=10:
+if st.button("ROLL"):
 
-    
-    icon_1 = random.choice(icons)
-    icon_2 = random.choice(icons)
-    icon_3 = random.choice(icons)
+    if st.session_state.fichas >=10:
 
-    st.markdown(f"# {icon_1}|{icon_2}|{icon_3}")
-    st.session_state.contador += 1
-    st.session_state.creditos -=10
+        icon_1 = random.choice(icons)
+        icon_2 = random.choice(icons)
+        icon_3 = random.choice(icons)
+
+        st.markdown(f"# {icon_1}|{icon_2}|{icon_3}")
+        st.session_state.contador += 1
+        st.session_state.fichas -=10
         
-    if icon_1 == icon_2 == icon_3:
-        st.success("Voce Ganhou 🎉​")
-        st.session_state.creditos +=10
-        st.balloons()
+        if icon_1 == icon_2 == icon_3:
+            st.success("Voce Ganhou 🎉​")
+            st.session_state.fichas +=30
+            st.session_state.coins +=5
+            st.balloons()
+        else:
+            st.error("Tente Novamente")
     else:
-        st.error("Tente Novamente")
-else:
-    st.warning("CREDITOS INSUFICIENTES")
-
+        st.warning("FICHAS INSUFICIENTES")
 st.write(f"Você jogou {st.session_state.contador} vezes")
