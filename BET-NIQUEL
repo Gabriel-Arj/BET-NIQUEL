@@ -18,20 +18,24 @@ col1, col2, col3 = st.columns(3)
 with col3:
     st.markdown(f"### Creditos: {st.session_state.creditos}")    
 
-if st.button("ROLL"):
+if st.button("ROLL") and st.session_state.creditos >=10:
 
-    st.session_state.creditos -=10
+    
     icon_1 = random.choice(icons)
     icon_2 = random.choice(icons)
     icon_3 = random.choice(icons)
+
     st.markdown(f"# {icon_1}|{icon_2}|{icon_3}")
     st.session_state.contador += 1
-
-    
+    st.session_state.creditos -=10
+        
     if icon_1 == icon_2 == icon_3:
         st.success("Voce Ganhou 🎉​")
+        st.session_state.creditos +=10
         st.balloons()
     else:
         st.error("Tente Novamente")
+else:
+    st.warning("CREDITOS INSUFICIENTES")
 
 st.write(f"Você jogou {st.session_state.contador} vezes")
