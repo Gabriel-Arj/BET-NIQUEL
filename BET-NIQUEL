@@ -36,7 +36,7 @@ if st.button("ROLL"):
         
         if icon_1 == icon_2 == icon_3:
             st.success("Voce Ganhou 🎉​")
-            st.session_state.fichas +=30
+            st.session_state.fichas +=40
             st.session_state.coins +=5
             st.balloons()
         else:
